@@ -1,14 +1,18 @@
 {
   "name": "@impetusuxp/vizualy-line-chart",
-  "version": "1.0.1",
-  "description": "Line chart in library vizualy by Impetus Technologies",
+  "version": "1.0.2",
+  "description": "Line chart of Vizualy library by Impetus Technologies",
   "main": "./vizualy-line-chart.js",
   "files": [
     "./vizualy-line-chart.js",
     "./vizualy-line-chart.d.ts"
   ],
+  "repository": "https://github.com/dahalevipul/vizualy",
+  "bugs": "https://github.com/dahalevipul/vizualy/issues",
+  "homepage": "https://github.com/dahalevipul/vizualy",
+  "pulls": "https://github.com/dahalevipul/vizualy/pulls",
   "keywords": [
-    "Impetus",
+    "Impetus Technologies",
     "Visualization",
     "Chart",
     "Graph",
