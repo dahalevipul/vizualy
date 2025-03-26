@@ -1,0 +1,297 @@
+<!doctype html style="height:100%;">
+
+<head>
+    <meta charset="utf-8">
+    <title>UXP vertical stacked Bar chart</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="./vizualy-assistant/src/css/common.css">
+</head>
+
+<body>
+    <div id="chartContainer" style="width: 90%; height: 50%"></div>
+    <!-- <div id="chartContainer1" style="width: 90%; height: 50%; margin-top: 20px; text-align: center;"></div> -->
+
+    <script type="text/javascript" src="./libs/d3.v6.min.js"></script>
+    <script type="text/javascript" src="./vizualy-assistant/src/js/utility.js"></script>
+    <script type="text/javascript" src="./vizualy-assistant/src/js/assistant.js"></script>
+    <script type="text/javascript" src="./vizualy-assistant/src/js/observer.js"></script>
+    <script type="text/javascript" src="./vizualy-vertical-stacked-bar-chart/vizualy-vertical-stacked-bar-chart.js"></script>
+    <script type="text/javascript" src="./vizualy/vizualy.js"></script>
+
+    <script>
+
+
+        var data = [
+            {
+                "company": "Google",
+                "product": "Product A",
+                "sell": 34
+            },
+            {
+                "company": "Google",
+                "product": "Product B",
+                "sell": 3
+            },
+            {
+                "company": "Google",
+                "product": "Product C",
+                "sell": 50,
+            },
+            {
+                "company": "Google",
+                "product": "Product D",
+                "sell": 12
+            },
+            {
+                "company": "Google",
+                "product": "Product E",
+                "sell": 10
+            },
+            {
+                "company": "Twitter",
+                "product": "Product A",
+                "sell": 4
+            },
+            {
+                "company": "Yahoo",
+                "product": "Product A",
+                "sell": 56
+            },
+            {
+                "company": "Yahoo",
+                "product": "Product B",
+                "sell": 2
+            },
+            {
+                "company": "Yahoo",
+                "product": "Product C",
+                "sell": 18
+            },
+            {
+                "company": "Twitter",
+                "product": "Product B",
+                "sell": 16
+            },
+            {
+                "company": "Twitter",
+                "product": "Product C",
+                "sell": 18
+            }
+        ]
+
+
+
+        // var data = ["company":"google","prodcuA":23,"prodcuB":23]
+
+        // var color  = [{
+        //     product A : #22312;
+        // }]
+
+        // var data = [{company:google, indfined:undef}];
+
+
+
+        var verticalstackedbarchart = new vizualy.VerticalStackedBarChart();
+
+        // create bar chart
+        verticalstackedbarchart
+            .container("chartContainer")
+            .x("company")
+            .y("sell").stack('product')
+            .data(data)
+            .settings({
+                dimension: {
+                    margin: { top: 30, right: 30, bottom: 50, left: 90 }
+                },
+                // yScaleType: {
+                //     type: "log", base: 2
+                //         // type: "pow", exponent: 2
+                // },
+                xAxisLabel: {
+                    value: 'company',
+                    margin: 40,
+                    isVisible: true
+                },
+                yAxisLabel: {
+                    value: 'sell',
+                    margin: 50,
+                    isVisible: true
+                },
+                yAxisTicksCount : {value: 3, isApplied: true },
+                brush: {
+                    isVisible: false,
+                    limit: 30,
+                    offset: 0,
+                    height: 80,
+                    margin: 60
+                },
+                // xWordWrap: {
+                //     isVisible: false,
+                //     linesToAddEllipses: 3
+                // },
+                // rotateXAxisTick: {
+                //     value: [-10, 10, 10], // [relative X position of ticks label, relative y position, rotation-angle]
+                //     isVisible: true
+                // },
+                // tooltip: {
+                //     isVisible: true,
+                //     content: (d) => {
+                //         let ttCont = " Company : <b>" + d.key + "</b><br>";
+                //         d.value.forEach((ele) => {
+                //             if(ele.isStackHovered) {
+                //                 ttCont += '<span style="background-color: '+ ele.color + ';display:inline-block;margin-right:4px;height: 8px;width: 8px;border-radius: 4px;vertical-align: middle;"></span>' + ele['product'] + ": <b>" + ele['sell'] + "</b><br></div>";
+                //             }
+                //         });
+                //         return ttCont;
+                //     },
+                //     placement: "top-right"
+                // },
+            })
+            .on('beforeDraw', () => {
+                console.log("Chart drawing started");
+            })
+            .on('completeDraw', () => {
+                console.log("Chart drawing completed");
+            })
+            .on('beforeUpdate', () => {
+                console.log("Chart update Started");
+            })
+            .on('completeUpdate', () => {
+                console.log("Chart udpate completed");
+            })
+            .on('error', () => {
+                console.log("Error occurred");
+            })
+            .draw();
+
+
+        // no data scenario
+        // var updatedData = [
+        //     {
+        //         "company": "Google",
+        //         "product": "Product A",
+        //         "sell": 34
+        //     },
+        //     {
+        //         "company": "Google",
+        //         "product": "Product B",
+        //         "sell": 31
+        //     },
+        //     {
+        //         "company": "Google",
+        //         "product": "Product C",
+        //         "sell": 64,
+        //     }]
+        // setTimeout(() => {
+        //     verticalstackedbarchart.data(updatedData).update();
+        // }, 3000);
+
+
+        // update chart with new data
+        // setTimeout(() => {
+        //     verticalstackedbarchart.data([
+        //         {
+        //             "company": "Suzuki",
+        //             "product": "Product A",
+        //             "sell": 34
+        //         },
+        //         {
+        //             "company": "Suzuki",
+        //             "product": "Product B",
+        //             "sell": 31
+        //         },
+        //         {
+        //             "company": "Suzuki",
+        //             "product": "Product C",
+        //             "sell": 64
+        //         },
+        //         {
+        //             "company": "Facebook",
+        //             "product": "Product A",
+        //             "sell": 34
+        //         },
+        //         {
+        //             "company": "IBM",
+        //             "product": "Product A",
+        //             "sell": 56
+        //         },
+        //         {
+        //             "company": "IBM",
+        //             "product": "Product B",
+        //             "sell": 22
+        //         },
+        //         {
+        //             "company": "IBM",
+        //             "product": "Product C",
+        //             "sell": 18
+        //         },
+        //         {
+        //             "company": "Facebook",
+        //             "product": "Product B",
+        //             "sell": 212
+        //         },
+        //         {
+        //             "company": "Facebook",
+        //             "product": "Product C",
+        //             "sell": 18
+        //         },
+        //         {
+        //             "company": "Facebook",
+        //             "product": "Product D",
+        //             "sell": 135
+        //         }
+        //     ]).update();
+        // }, 9000);
+
+        // update chart with new settings
+        // setTimeout(() => {
+        //     verticalstackedbarchart.settings({
+        //         xAxisLabel: {
+        //             value: 'X-axis-updated-label',
+        //             margin: 40,
+        //             isVisible: true
+        //         },
+        //         yAxisLabel: {
+        //             value: 'Y-axis-updated-label',
+        //             margin: 50,
+        //             isVisible: true
+        //         },
+        //         barLabel: {
+        //             isVisible: true,
+        //             labelFormat: (d) => d + "%"
+        //         },
+        //         tooltip: {
+        //             content: (d, chartObject) => {
+        //                 return "Custom content from out side";
+        //             },
+        //             placement: "bottom-left"
+        //         },
+        //         isResponsive: false
+        //     })
+        //         .data([{
+        //             Client: "amazon",
+        //             Count: 491189
+        //         }, {
+        //             Client: "flipkart",
+        //             Count: 809285,
+        //             color: 'green'
+        //         }, {
+        //             Client: "snapdeal",
+        //             Count: 469133,
+        //             color: 'gray'
+        //         }, {
+        //             Client: "myntra",
+        //             Count: 182708
+        //         }]).update();
+        // }, 10000);
+
+        // document.getElementById("chartContainer1").innerHTML = "Hello!! I am another script running after chart plotting";
+
+        /* barchart.getElement("bar").on('mouseMove', [(d, element, event) => {
+            console.log('hovered!!!');
+        }]); */
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,27 @@
+{
+    "name": "@impetusuxp/vizualy-horizontal-grouped-bar-chart",
+    "version": "1.0.1",
+    "description": "Horizontal Grouped Bar chart in library Vizualy by Impetus Technologies",
+    "main": "./vizualy-horizontal-grouped-bar-chart.js",
+    "files": [
+      "./vizualy-horizontal-grouped-bar-chart.js",
+      "./vizualy-horizontal-grouped-bar-chart.d.ts"
+    ],
+    "keywords": [
+      "Impetus",
+      "Visualization",
+      "Chart",
+      "Graph",
+      "Assistant",
+      "Utility",
+      "Vizualy",
+      "Horizontal Grouped Bar chart"
+    ],
+    "author": "UX Practice Impetus",
+    "license": "MIT",
+    "dependencies": {
+      "@impetusuxp/vizualy-assistant": "^1.0.0",
+      "d3": "^6.5.0"
+    }
+  }
+  

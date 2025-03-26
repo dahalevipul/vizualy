@@ -1,0 +1,26 @@
+{
+    "name": "@impetusuxp/vizualy-horizontal-bullet-chart",
+    "version": "1.0.1",
+    "description": "Horizontal bullet chart in library vizualy by Impetus Technologies",
+    "main": "./vizualy-horizontal-bullet-chart.js",
+    "files": [
+        "./vizualy-horizontal-bullet-chart.js",
+        "./vizualy-horizontal-bullet-chart.d.ts"
+    ],
+    "keywords": [
+        "Impetus",
+        "Visualization",
+        "Chart",
+        "Graph",
+        "Assistant",
+        "Utility",
+        "Vizualy",
+        "Horizontal Bullet chart"
+    ],
+    "author": "UX Practice Impetus",
+    "license": "MIT",
+    "dependencies": {
+        "@impetusuxp/vizualy-assistant": "^1.0.0",
+        "d3": "^6.5.0"
+    }
+}

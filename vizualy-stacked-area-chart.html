@@ -1,0 +1,81 @@
+<!doctype html style="height:100%;">
+
+<head>
+    <meta charset="utf-8">
+    <title>UXP Stacked Area chart</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="./vizualy-assistant/src/css/common.css">
+</head>
+
+<body>
+    <div id="chartContainer" style="width: 90%; height: 50%"></div>
+    <div id="chartContainer1" style="width: 90%; height: 50%; margin-top: 20px; text-align: center;"></div>
+
+    <script type="text/javascript" src="./libs/d3.v6.min.js"></script>
+    <script type="text/javascript" src="./vizualy-assistant/src/js/utility.js"></script>
+    <script type="text/javascript" src="./vizualy-assistant/src/js/assistant.js"></script>
+    <script type="text/javascript" src="./vizualy-assistant/src/js/observer.js"></script>
+    <script type="text/javascript" src="./vizualy-stacked-area-chart/vizualy-stacked-area-chart.js"></script>
+    <script type="text/javascript" src="./vizualy/vizualy.js"></script>
+
+    <script>
+         
+        var data = [
+            { key: 'area-2', category:'population', "date": new Date("2017-04-23 00:00:00"), "India": 10000, "America": 20000,"China" : 25000},
+            { key: 'area-2', category:'population', "date": new Date("2017-04-24 00:00:00"), "India": 12000, "America": 22000,"China" : 25000 },
+            { key: 'area-2', category:'population', "date": new Date("2017-04-25 00:00:00"), "India": 19000, "America": 21000,"China" : 22000},
+            { key: 'area-2', category:'population', "date": new Date("2017-04-26 00:00:00"), "India": 13000, "America": 15000,"China" : 20000 },
+            { key: 'area-2', category:'population', "date": new Date("2017-04-27 00:00:00"), "India": 24000, "America": 28000,"China" : 30000 },
+            { key: 'area-2', category:'population', "date": new Date("2017-04-28 00:00:00"), "India": 38000, "America": 42000,"China" : 72000 }
+        ]
+
+        var stackedareachart = new vizualy.StackedAreaChart();
+
+        // create stacked area chart
+        stackedareachart
+            .container("chartContainer")
+            .x("date")
+            .y("China")
+            .area("key")
+            .data(data)
+            .settings({
+                dimension: {
+                    margin: { top: 30, right: 30, bottom: 50, left: 90 }
+                },
+                rotateXAxisTick: {
+                    isVisible: false,
+                    value: [-10, 10, 10] // [relative X position of ticks label, relative y position, rotation-angle]
+                },
+                brush: {
+                    isVisible: false,
+                    limit: 80,
+                    offset: 20,
+                    height: 80,
+                    margin: 60
+                },
+                xWordWrap: {
+                    isVisible: true,
+                    linesToAddEllipses: 3
+                }
+            })
+            .on('beforeDraw', () => {
+                console.log("Chart drawing started");
+            })
+            .on('completeDraw', () => {
+                console.log("Chart drawing completed");
+            })
+            .on('beforeUpdate', () => {
+                console.log("Chart update Started");
+            })
+            .on('completeUpdate', () => {
+                console.log("Chart udpate completed");
+            })
+            .on('error', () => {
+                console.log("Error occurred");
+            })
+            .draw();
+    </script>
+</body>
+
+</html>

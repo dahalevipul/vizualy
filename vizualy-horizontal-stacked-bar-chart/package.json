@@ -1,0 +1,26 @@
+{
+  "name": "@impetusuxp/vizualy-horizontal-stacked-bar-chart",
+  "version": "1.0.1",
+  "description": "Horizontal Stacked Bar chart in library Vizualy by Impetus Technologies",
+  "main": "./vizualy-horizontal-stacked-bar-chart.js",
+  "files": [
+    "./vizualy-horizontal-stacked-bar-chart.js",
+    "./vizualy-horizontal-stacked-bar-chart.d.ts"
+  ],
+  "keywords": [
+    "Impetus",
+    "Visualization",
+    "Chart",
+    "Graph",
+    "Assistant",
+    "Utility",
+    "Vizualy",
+    "Horizontal Stacked Bar chart"
+  ],
+  "author": "UX Practice Impetus",
+  "license": "MIT",
+  "dependencies": {
+    "@impetusuxp/vizualy-assistant": "^1.0.0",
+    "d3": "^6.5.0"
+  }
+}

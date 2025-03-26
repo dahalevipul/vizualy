@@ -1,0 +1,26 @@
+{
+  "name": "@impetusuxp/vizualy-line-bar-chart",
+  "version": "1.0.1",
+  "description": "Line Bar chart in library vizualy by Impetus Technologies",
+  "main": "./vizualy-line-bar-chart.js",
+  "files": [
+    "./vizualy-line-bar-chart.js",
+    "./vizualy-line-bar-chart.d.ts"
+  ],
+  "keywords": [
+    "Impetus",
+    "Visualization",
+    "Chart",
+    "Graph",
+    "Assistant",
+    "Utility",
+    "Vizualy",
+    "Line Bar chart"
+  ],
+  "author": "UX Practice Impetus",
+  "license": "MIT",
+  "dependencies": {
+    "@impetusuxp/vizualy-assistant": "^1.0.0",
+    "d3": "^6.5.0"
+  }
+}

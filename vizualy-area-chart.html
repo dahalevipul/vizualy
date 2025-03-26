@@ -1,0 +1,148 @@
+<!doctype html style="height:100%;">
+
+<head>
+    <meta charset="utf-8">
+    <title>UXP Area chart</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="./vizualy-assistant/src/css/common.css">
+</head>
+
+<body>
+    <div id="chartContainer" style="width: 90%; height: 50%"></div>
+    <div id="chartContainer1" style="width: 90%; height: 50%; margin-top: 20px; text-align: center;"></div>
+
+    <script type="text/javascript" src="./libs/d3.v6.min.js"></script>
+    <script type="text/javascript" src="./vizualy-assistant/src/js/utility.js"></script>
+    <script type="text/javascript" src="./vizualy-assistant/src/js/assistant.js"></script>
+    <script type="text/javascript" src="./vizualy-assistant/src/js/observer.js"></script>
+    <script type="text/javascript" src="./vizualy-area-chart/vizualy-area-chart.js"></script>
+    <script type="text/javascript" src="./vizualy/vizualy.js"></script>
+
+    <script>
+
+
+
+
+        var data = [
+            { key: 'area-2', "date": new Date("2017-04-23 00:00:00"), "count": 10.78 },
+            { key: 'area-2', "date": new Date("2017-04-24 00:00:00"), "count": 56.54 },
+            { key: 'area-2', "date": new Date("2017-04-25 00:00:00"), "count": 23.85 },
+            { key: 'area-2', "date": new Date("2017-04-26 00:00:00"), "count": 80 },
+            { key: 'area-2', "date": new Date("2017-04-27 00:00:00"), "count": 60 },
+            { key: 'area-2', "date": new Date("2017-04-28 00:00:00"), "count": 180 },
+            { key: 'area-2', "date": new Date("2017-04-28 00:00:00"), "count": 140 },
+            { key: 'area-2', "date": new Date("2017-04-01 00:00:00"), "count": 10.78 },
+            { key: 'area-2', "date": new Date("2017-04-02 00:00:00"), "count": 56.54 },
+            { key: 'area-2', "date": new Date("2017-04-03 00:00:00"), "count": 23.85 },
+            // { key: 'area-2', "date": new Date("2017-05-01 00:00:00"), "count": 10.78 },
+            // { key: 'area-2', "date": new Date("2017-05-02 00:00:00"), "count": 56.54 },
+            // { key: 'area-2', "date": new Date("2017-05-03 00:00:00"), "count": 23.85 },
+            // { key: 'area-2', "date": new Date("2017-05-04 00:00:00"), "count": 80 },
+            // { key: 'area-2', "date": new Date("2017-05-05 00:00:00"), "count": 60 },
+            // { key: 'area-2', "date": new Date("2017-05-06 00:00:00"), "count": 180 },
+            // { key: 'area-2', "date": new Date("2017-05-07 00:00:00"), "count": 140 },
+            // { key: 'area-2', "date": new Date("2017-05-08 00:00:00"), "count": 10.78 },
+            // { key: 'area-2', "date": new Date("2017-05-09 00:00:00"), "count": 56.54 },
+            // { key: 'area-2', "date": new Date("2017-05-10 00:00:00"), "count": 23.85 },
+            // { key: 'area-2', "date": new Date("2017-05-11 00:00:00"), "count": 10.78 },
+            // { key: 'area-2', "date": new Date("2017-05-12 00:00:00"), "count": 56.54 },
+            // { key: 'area-2', "date": new Date("2017-05-13 00:00:00"), "count": 23.85 },
+            // { key: 'area-2', "date": new Date("2017-05-14 00:00:00"), "count": 80 },
+            // { key: 'area-2', "date": new Date("2017-05-15 00:00:00"), "count": 60 },
+            // { key: 'area-2', "date": new Date("2017-05-16 00:00:00"), "count": 180 },
+            // { key: 'area-2', "date": new Date("2017-05-17 00:00:00"), "count": 140 },
+            // { key: 'area-2', "date": new Date("2017-05-18 00:00:00"), "count": 10.78 },
+            // { key: 'area-2', "date": new Date("2017-05-19 00:00:00"), "count": 56.54 },
+            // { key: 'area-2', "date": new Date("2017-05-20 00:00:00"), "count": 23.85 },
+            // { key: 'area-2', "date": new Date("2017-05-21 00:00:00"), "count": 10.78 },
+            // { key: 'area-2', "date": new Date("2017-05-22 00:00:00"), "count": 56.54 },
+            // { key: 'area-2', "date": new Date("2017-05-23 00:00:00"), "count": 23.85 },
+            // { key: 'area-2', "date": new Date("2017-05-24 00:00:00"), "count": 80 },
+            // { key: 'area-2', "date": new Date("2017-05-25 00:00:00"), "count": 60 },
+            // { key: 'area-2', "date": new Date("2017-05-26 00:00:00"), "count": 180 },
+            // { key: 'area-2', "date": new Date("2017-05-27 00:00:00"), "count": 140 },
+            // { key: 'area-2', "date": new Date("2017-05-28 00:00:00"), "count": 10.78 },
+            // { key: 'area-2', "date": new Date("2017-05-29 00:00:00"), "count": 56.54 },
+            // { key: 'area-2', "date": new Date("2017-05-30 00:00:00"), "count": 23.85 }
+        ];
+
+        var data2 = [
+            { key: 'area-2', "date": new Date("2017-04-23 00:00:00"), "count": 10.78, "count1": 80  },
+            { key: 'area-2', "date": new Date("2017-04-24 00:00:00"), "count": 56.54, "count1": 80  },
+            { key: 'area-2', "date": new Date("2017-04-25 00:00:00"), "count": 23.85, "count1": 80  },
+            { key: 'area-2', "date": new Date("2017-04-26 00:00:00"), "count": 80, "count1": 80 },
+            { key: 'area-3', "date": new Date("2017-04-23 00:00:00"), "count":15.78, "count1": 80  },
+            { key: 'area-3', "date": new Date("2017-04-24 00:00:00"), "count": 40.54, "count1": 80  },
+            { key: 'area-3', "date": new Date("2017-04-25 00:00:00"), "count": 23.85, "count1": 80  },
+            { key: 'area-3', "date": new Date("2017-04-26 00:00:00"), "count": 60, "count1": 80  }
+        ];
+
+        // create bar chart object
+        var areachart = new vizualy.AreaChart();
+
+        // create bar chart
+        areachart
+            .container("chartContainer")
+            .x("date")
+            .y("count")
+            .area("key")
+            .data(data2)
+            .settings({
+                dimension: {
+                    margin: { top: 30, right: 30, bottom: 50, left: 90 }
+                },
+                rotateXAxisTick: {
+                    isVisible: false,
+                    value: [-10, 10, 10] // [relative X position of ticks label, relative y position, rotation-angle]
+                },
+                brush: {
+                    isVisible: true,
+                    limit: 80,
+                    offset: 20,
+                    height: 80,
+                    margin: 60
+                },
+                xWordWrap: {
+                    isVisible: true,
+                    linesToAddEllipses: 3
+                }
+            })
+            .on('beforeDraw', () => {
+                console.log("Chart drawing started");
+            })
+            .on('completeDraw', () => {
+                console.log("Chart drawing completed");
+            })
+            .on('beforeUpdate', () => {
+                console.log("Chart update Started");
+            })
+            .on('completeUpdate', () => {
+                console.log("Chart udpate completed");
+            })
+            .on('error', () => {
+                console.log("Error occurred");
+            })
+            .draw();
+
+        // setTimeout(() => {
+        //     console.log("calling");
+        //     areachart.data(data2).update();
+        // }, 3000);
+
+       // document.getElementById("chartContainer1").innerHTML = "Hello!! I am another script running after chart plotting";
+    </script>
+</body>
+
+</html>
+<!--
+// Import patterns
+
+
+import vizualy from 'vizualy';
+const BarChartClass = vizualy.getChart('BarChart');
+const barChart = new BarChartClass();
+
+import BarChart from 'vizualybar-chart';
+const barChart = new BarChart();
+-->

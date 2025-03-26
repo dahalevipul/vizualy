@@ -1,0 +1,160 @@
+<!doctype html style="height:100%;">
+
+<head>
+    <meta charset="utf-8">
+    <title>UXP Pie chart</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="./vizualy-assistant/src/css/common.css">
+
+    <script type="text/javascript" src="./libs/d3.v6.min.js"></script>
+    <script type="text/javascript" src="./vizualy-assistant/src/js/utility.js"></script>
+    <script type="text/javascript" src="./vizualy-assistant/src/js/assistant.js"></script>
+    <script type="text/javascript" src="./vizualy-assistant/src/js/observer.js"></script>
+    <script type="text/javascript" src="./vizualy-pie-chart/vizualy-pie-chart.js"></script>
+</head>
+
+<body>
+    <div id="chartContainer" style="width: 100%; height: 100%"></div>
+    <script>
+        var data = [{
+            Client: "amazon",
+            Percentage: 0.2,
+            color: "red"
+
+        }, {
+            Client: "flipkart",
+            Percentage: 2.0,
+
+        }, {
+            Client: "snapdeal",
+            Percentage: 2.0,
+            color: "blue"
+
+        }, {
+            Client: "myntra",
+            Percentage: 2.0,
+
+        }, {
+            Client: "other",
+            Percentage: 100,
+            color: "yellow"
+
+        }];
+        // create bar chart object   
+        var pieChart = new vizualy.PieChart();
+        var settings = {
+            donut: {
+                isApplied: true,
+                thickness: { type: 'ratio', value: 0.5 } // { type: 'pixel', value: 50}
+            },
+            dimension: {
+                width: "",
+                height: "450",
+                margin: { top: 0, right: 0, bottom: 0, left: 0 }
+            },
+            tooltip: {
+                isVisible: true,
+                content: (d) => {
+                    return "Percentage: <b>" + d.data['Percentage'] + "</b><br>" +
+                        "Client : <b>" + d.data['Client'] + "</b>";
+                },
+                placement: "top-right"
+            },
+            animation: {
+                isApplied: true,
+                duration: 750,
+                type: 'cubic'
+            },
+            legend: {
+                isVisible: false,
+                placement: 'right',
+                margin: { top: 10, right: 10, bottom: 10, left: 10 },
+                rectWidth: 10,
+                rectHeight: 10,
+                textKey: null,
+                textFormat: (d) => d,
+            },
+            label: {
+                isVisible: true,
+                placement: 'in-out', //'in', 'out', 'in-out'
+                dataKey: null,
+                textFormat: (d) => d
+            },
+            isResponsive: true,
+            emptyDataMessage: 'No data Available',
+            exceptionMessage: 'Something went wrong!! Please look into logs.'
+        };
+        // create pie chart
+        pieChart
+            .container("chartContainer")
+            .data(data)
+            .value("Percentage")
+            .label("Client")
+            .settings(settings)
+            .on('beforeDraw', () => {
+                console.log("Chart drawing started");
+            })
+            .on('completeDraw', () => {
+                console.log("Chart drawing completed");
+                pieChart.getElement("pie").on('mouseMove', [(d, element, event) => {
+                    console.log('hovered!!!');
+                }]);
+            })
+            .on('beforeUpdate', () => {
+                console.log("Chart update Started");
+            })
+            .on('completeUpdate', () => {
+                console.log("Chart udpate completed");
+            })
+            .on('completeUpdate', () => {
+                console.log("Chart udpate completed");
+            })
+            .on('error', () => {
+                console.log("Error occurred");
+            })
+            .draw();
+
+
+        //updating chart in some timeout
+        setTimeout(() => {
+            pieChart
+                .settings({
+                    dimension: {
+                        margin: {
+                            top: 100,
+                            right: 100,
+                            bottom: 100,
+                            left: 100
+                        }
+                    },
+                    donut: {
+                        isApplied: true,
+                        thickness: { type: 'ratio', value: 0 } // { type: 'pixel', value: 50}
+                    }
+                })
+                // .data([{
+                //     Client: "amazon",
+                //     Percentage: 55,
+                //     color: "gray"
+                // }, {
+                //     Client: "mway",
+                //     Percentage: 20,
+
+                // }, {
+                //     Client: "myntra",
+                //     Percentage: 10,
+                //     color: "black"
+
+                // }, {
+                //     Client: "other",
+                //     Percentage: 10,
+                //     color: "orange"
+                // }])
+                .data([])
+                .update();
+        }, 3000);
+    </script>
+</body>
+
+</html>

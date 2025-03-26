@@ -1,0 +1,222 @@
+<!doctype html style="height:100%;">
+
+<head>
+    <meta charset="utf-8">
+    <title>UXP Line chart</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="./vizualy-assistant/src/css/common.css">
+</head>
+
+<body>
+    <div id="chartContainer" style="width: 90%; height: 80%"></div>
+    <!-- <div id="chartContainer" style="width: 700px; height: 80%"></div> -->
+
+    <script type="text/javascript" src="./libs/d3.v6.min.js"></script>
+    <script type="text/javascript" src="./vizualy-assistant/src/js/utility.js"></script>
+    <script type="text/javascript" src="./vizualy-assistant/src/js/assistant.js"></script>
+    <script type="text/javascript" src="./vizualy-assistant/src/js/observer.js"></script>
+    <script type="text/javascript" src="./vizualy-line-chart/vizualy-line-chart.js"></script>
+    <script type="text/javascript" src="./vizualy/vizualy.js"></script>
+
+    <script>
+
+    const dataYear = [];
+    const dataMonth = [];
+    const dataDay = [];
+
+    // preparing data for years
+    for(let i=2000;i<=2025;i++) {
+        let brand1 =  {
+            "key": "Flipkart", 
+            "color":"#A3D3E8"
+        };
+        let brand2 =  {
+            "key": "Amazon", 
+            "color": "#FF9900"
+        };
+        let brand3 =  {
+            "key": "Myntra", 
+            "color": "#00c476"
+        };
+
+        let date = new Date(i + "-01-01 00:00:00");
+
+        brand1.date = date;
+        brand2.date = date;
+        brand3.date = date;
+
+        brand1.count = parseInt(Math.random() * 100);
+        brand2.count = parseInt(Math.random() * 100);
+        brand3.count = parseInt(Math.random() * 100);
+
+        dataYear.push(brand1);
+        dataYear.push(brand2);
+        dataYear.push(brand3);
+    }
+
+    // preparing data for months
+    var startMonth = 1;
+    for(let i=1900;i<=2027;) {
+        for(let j=startMonth; j<13 ;j++) {
+            let brand1 =  {
+                "key": "Flipkart", 
+                "color":"#A3D3E8"
+            };
+            let brand2 =  {
+                "key": "Amazon", 
+                "color": "#FF9900"
+            };
+            let brand3 =  {
+                "key": "Myntra", 
+                "color": "#00c476"
+            };
+            let date = new Date(i + "-0" + startMonth + "-01 00:00:00");
+
+            brand1.date = date;
+            brand2.date = date;
+            brand3.date = date;
+
+            brand1.count = parseInt(Math.random() * 100);
+            brand2.count = parseInt(Math.random() * 100);
+            brand3.count = parseInt(Math.random() * 100);
+
+            dataMonth.push(brand1);
+            dataMonth.push(brand2);
+            dataMonth.push(brand3);
+            startMonth++;
+        }
+        i++;
+        startMonth = 1;
+    }
+
+    // preparing data for days
+    for(let a=2024;a<=2025;a++) {
+        for(let i=1; i<13; i++) {
+            for(let j=1; j<=31; j++) {
+                let brand1 =  {
+                    "key": "Flipkart", 
+                    "color":"#a6cee3"
+                };
+                let brand2 =  {
+                    "key": "Amazon", 
+                    "color": "#b2df8a"
+                };
+                let brand3 =  {
+                    "key": "Myntra", 
+                    "color": "#1f78b4"
+                };
+                let date = new Date(a + "-0" + i + "-0" + j + " 00:00:00");
+
+                brand1.date = date;
+                brand2.date = date;
+                brand3.date = date;
+
+                brand1.count = parseInt(Math.random() * 100);
+                brand2.count = parseInt(Math.random() * 100);
+                brand3.count = parseInt(Math.random() * 100);
+
+                dataDay.push(brand1);
+                dataDay.push(brand2);
+                dataDay.push(brand3);
+            }
+        }
+    }
+    
+    console.log(dataYear);
+    console.log(dataMonth);
+    console.log(dataDay);
+
+
+        // create line chart object
+        var linechart = new vizualy.LineChart();
+
+        // create line chart
+        linechart
+            .container("chartContainer")
+            .x("date")
+            .y("count")
+            .line("key")
+            .data(dataYear)
+            .settings({
+                dimension: {
+                    margin: { top: 50, right: 30, bottom: 50, left: 90 }
+                },
+                tooltip: {
+                    showTooltipOnlyOnPoints: false
+                },
+                rotateXAxisTick: {
+                    isVisible: false,
+                    value: [-10, 10, 10] // [relative X position of ticks label, relative y position, rotation-angle]
+                },
+                xAxis: {
+                    isVisible: true,
+                    tickSpaceBuffer: 30,
+                    tickUnit: 'year',
+                    tickInterval: 1,
+                    tickFormat: (d) => d3.timeFormat("%Y")(d)
+                },
+                xAxisLabel: {
+                    value: 'Years'
+                },
+                yAxisLabel: {
+                    value: 'Sales (in Cr.)'
+                },
+                yAxisTicksCount: { value: 4, isApplied: true },
+                xWordWrap: {
+                    isVisible: true,
+                    linesToAddEllipses: 3
+                },
+                animation: {
+                    isApplied: false
+                },
+                legend: {
+                    isVisible: true,
+                    toggleLegendDataOnClick: true
+                },
+                brush: {
+                    isVisible: true,
+                    isZoomable: false,
+                    zoomPerenctage: 10,
+                    showZoomControlButtons: false,
+                    limit: 100,
+                    offset: 0,
+                    height: 80,
+                    margin: 60
+                }
+            })
+            .on('beforeDraw', () => {
+                console.log("Chart drawing started");
+            })
+            .on('completeDraw', () => {
+                console.log("Chart drawing completed");
+            })
+            .on('beforeUpdate', () => {
+                console.log("Chart update Started");
+            })
+            .on('completeUpdate', () => {
+                console.log("Chart udpate completed");
+            })
+            .draw();
+
+
+        // // no data scenario
+        // setTimeout(() => {
+        //     linechart.data([]).update();
+        // }, 3000);
+
+
+        // // update chart with new data
+        // setTimeout(() => {
+        //     linechart.data(data).update();
+        // }, 6000);
+
+        // document.getElementById("chartContainer1").innerHTML = "Hello!! I am another script running after chart plotting";
+
+        /* linechart.getElement("line").on('mouseMove', [(d, element, event) => {
+            console.log('hovered!!!');
+        }]); */
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,26 @@
+{
+  "name": "@impetusuxp/vizualy-pie-chart",
+  "version": "1.0.1",
+  "description": "Pie chart in library Vizualy by Impetus Technologies",
+  "main": "./vizualy-pie-chart.js",
+  "files": [
+    "./vizualy-pie-chart.js",
+    "./vizualy-pie-chart.d.ts"
+  ],
+  "keywords": [
+    "Impetus",
+    "Visualization",
+    "Chart",
+    "Graph",
+    "Assistant",
+    "Utility",
+    "Vizualy",
+    "Pie chart"
+  ],
+  "author": "UX Practice Impetus",
+  "license": "MIT",
+  "dependencies": {
+    "@impetusuxp/vizualy-assistant": "^1.0.0",
+    "d3": "^6.5.0"
+  }
+}

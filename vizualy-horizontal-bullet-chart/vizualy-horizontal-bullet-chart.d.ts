@@ -1,0 +1,1 @@
+declare module '@impetusuxp/vizualy-horizontal-bullet-chart';

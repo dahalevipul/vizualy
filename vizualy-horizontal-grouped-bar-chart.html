@@ -1,0 +1,330 @@
+<!doctype html style="height:100%;">
+
+<head>
+    <meta charset="utf-8">
+    <title>UXP Horizontal Grouped Bar Chart</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="./vizualy-assistant/src/css/common.css">
+</head>
+
+<body>
+    <div id="chartContainer" style="width: 100%;height: 70%;display:inline-block;"></div>
+
+    <script type="text/javascript" src="./libs/d3.v6.min.js"></script>
+    <script type="text/javascript" src="./vizualy-assistant/src/js/utility.js"></script>
+    <script type="text/javascript" src="./vizualy-assistant/src/js/assistant.js"></script>
+    <script type="text/javascript" src="./vizualy-assistant/src/js/observer.js"></script>
+    <script type="text/javascript"
+        src="./vizualy-horizontal-grouped-bar-chart/vizualy-horizontal-grouped-bar-chart.js"></script>
+    <script type="text/javascript" src="./vizualy/vizualy.js"></script>
+
+    <script>
+
+        var vtGroupedData = {
+            x: "value",
+            y: "material",
+            column: "property",
+            // colors: ['#6fcd96', '#fb3842bf', '#e8ae00bf', '#ec449abf', '#333eecbf'], //We can pass an color array in data or indivisuallly in each data object.
+            data: [
+                {
+                    material: "Iron",
+                    property: "Density",
+                    value: 40
+                },
+                {
+                    material: "Iron",
+                    property: "Melting Point",
+                    value: 80
+                },
+                {
+                    material: "Iron",
+                    property: "Th Conductivity",
+                    value: 123
+                },
+                {
+                    material: "Iron",
+                    property: "Th Expansion",
+                    value: 26
+                },
+                {
+                    material: "Iron",
+                    property: "El Conductivity",
+                    value: 10
+                },
+
+                {
+                    material: "Zinc",
+                    property: "Density",
+                    value: 6.6
+                },
+                {
+                    material: "Zinc",
+                    property: "Melting Point",
+                    value: 85
+                },
+                {
+                    material: "Zinc",
+                    property: "Th Conductivity",
+                    value: 3
+                },
+                {
+                    material: "Zinc",
+                    property: "Th Expansion",
+                    value: 27.7
+                },
+                {
+                    material: "Zinc",
+                    property: "El Conductivity",
+                    value: 25
+                },
+
+                {
+                    material: "Aluminum",
+                    property: "Density",
+                    value: 2.71
+                },
+                {
+                    material: "Aluminum",
+                    property: "Melting Point",
+                    value: 66
+                },
+                {
+                    material: "Aluminum",
+                    property: "Th Conductivity",
+                    value: 96
+                },
+                {
+                    material: "Aluminum",
+                    property: "Th Expansion",
+                    value: 21.8
+                },
+                {
+                    material: "Aluminum",
+                    property: "El Conductivity",
+                    value: 23
+                },
+
+                {
+                    material: "Magnesium",
+                    property: "Density",
+                    value: 1.81
+                },
+                {
+                    material: "Magnesium",
+                    property: "Melting Point",
+                    value: 99
+                },
+                {
+                    material: "Magnesium",
+                    property: "Th Conductivity",
+                    value: 72
+                },
+                {
+                    material: "Magnesium",
+                    property: "Th Expansion",
+                    value: 25.2
+                },
+                {
+                    material: "Magnesium",
+                    property: "El Conductivity",
+                    value: 12.2
+                },
+
+                {
+                    material: "Brass",
+                    property: "Density",
+                    value: 8.4
+                },
+                {
+                    material: "Brass",
+                    property: "Melting Point",
+                    value: 80
+                },
+                {
+                    material: "Brass",
+                    property: "Th Conductivity",
+                    value: 113
+                },
+                {
+                    material: "Brass",
+                    property: "Th Expansion",
+                    value: 26
+                },
+                {
+                    material: "Brass",
+                    property: "El Conductivity",
+                    value: 4
+                }
+            ]
+        };
+
+        // create vertical Grouped Bar chart
+        var vtGroupedBarchart = new vizualy.HorizontalGroupedBarChart();
+        vtGroupedBarchart
+            .container("chartContainer")
+            .x(vtGroupedData.x)
+            .y(vtGroupedData.y)
+            .column(vtGroupedData.column)
+            .colors(vtGroupedData.colors)
+            .data(vtGroupedData.data)
+            .settings({
+                dimension: {
+                    margin: { top: 30, right: 40, bottom: 50, left: 80 }
+                },
+                barLabel: {
+                    isVisible: true,
+                    // labelFormat: (d) => {
+                    //     return d + '%';
+                    // }
+                },
+                legend: {
+                    isVisible: true,
+                    textKey: 'property'
+                },
+                // yScaleType: {
+                //     type: "log" , exponent : 2
+                // },
+                // yAxisTicksCount : {value: 6, isApplied: true },
+                // yWordWrap: {
+                //     isVisible: false,
+                //     linesToAddEllipses: 3
+                //},
+                //barSpace : {type: 'px', value: 15 },
+                //rotateYAxisTick : ([-95, -20, -90]),
+            })
+            .on('beforeDraw', () => {
+                console.log("Chart drawing started");
+            })
+            .on('completeDraw', () => {
+                console.log("Chart drawing completed");
+            })
+            .on('beforeUpdate', () => {
+                console.log("Chart update Started");
+            })
+            .on('completeUpdate', () => {
+                console.log("Chart udpate completed");
+            })
+            .on('error', () => {
+                console.log("Error occurred");
+            })
+            .draw();
+
+        updatedData = [
+            {
+                material: "Iron",
+                property: "Density",
+                value: 90
+            },
+            {
+                material: "Iron",
+                property: "Melting Point",
+                value: 124
+            },
+            {
+                material: "Iron",
+                property: "Th Expansion",
+                value: 26
+            },
+            {
+                material: "Iron",
+                property: "El Conductivity",
+                value: 10
+            },
+
+            {
+                material: "Zinc",
+                property: "Density",
+                value: 6.6
+            },
+            {
+                material: "Zinc",
+                property: "Melting Point",
+                value: 105
+            },
+            {
+                material: "Zinc",
+                property: "Th Expansion",
+                value: 27.7
+            },
+            {
+                material: "Zinc",
+                property: "El Conductivity",
+                value: 25
+            },
+
+            {
+                material: "Aluminum",
+                property: "Density",
+                value: 2.71
+            },
+            {
+                material: "Aluminum",
+                property: "Melting Point",
+                value: 96
+            },
+            {
+                material: "Aluminum",
+                property: "Th Expansion",
+                value: 21.8
+            },
+            {
+                material: "Aluminum",
+                property: "El Conductivity",
+                value: 23
+            },
+
+            {
+                material: "Magnesium",
+                property: "Density",
+                value: 1.81
+            },
+            {
+                material: "Magnesium",
+                property: "Melting Point",
+                value: 53
+            },
+            {
+                material: "Magnesium",
+                property: "Th Expansion",
+                value: 25.2
+            },
+            {
+                material: "Magnesium",
+                property: "El Conductivity",
+                value: 12.2
+            },
+
+            {
+                material: "Brass",
+                property: "Density",
+                value: 8.4
+            },
+            {
+                material: "Brass",
+                property: "Melting Point",
+                value: 66
+            },
+            {
+                material: "Brass",
+                property: "Th Expansion",
+                value: 26
+            },
+            {
+                material: "Brass",
+                property: "El Conductivity",
+                value: 1
+            }
+        ];
+
+            // update chart with new data
+            // setTimeout(() => {
+            //     vtGroupedBarchart.x(vtGroupedData.x)
+            //     .y(vtGroupedData.y)
+            //     .data(updatedData).update();
+            // }, 2000);
+
+    </script>
+</body>
+
+</html>

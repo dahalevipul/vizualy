@@ -1,0 +1,254 @@
+<!doctype html style="height:100%;">
+
+<head>
+    <meta charset="utf-8">
+    <title>UXP Line Bar chart</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="./vizualy-assistant/src/css/common.css">
+</head>
+
+<body>
+    <div id="chartContainer" style="width: 90%; height: 50%"></div>
+    <div id="chartContainer1" style="width: 90%; height: 50%; margin-top: 20px; text-align: center;"></div>
+
+    <script type="text/javascript" src="./libs/d3.v6.min.js"></script>
+    <script type="text/javascript" src="./vizualy-assistant/src/js/utility.js"></script>
+    <script type="text/javascript" src="./vizualy-assistant/src/js/assistant.js"></script>
+    <script type="text/javascript" src="./vizualy-assistant/src/js/observer.js"></script>
+    <script type="text/javascript" src="./vizualy-line-bar-chart/vizualy-line-bar-chart.js"></script>
+    <script type="text/javascript" src="./vizualy/vizualy.js"></script>
+
+    <script>
+        var y = {
+            bar: {
+                key: 'customer_count',
+                value: 'Customer Count'
+            },
+            line: {
+                isVisible: true,
+                linesConfig: [
+                    {
+                        key: 'checkout_count',
+                        value: 'Checkout Count',
+                        color: "#2e7d32",
+                        circleColor: "#2e7d32",
+                        circleRadius: 5,
+                        lineType: "curveLinear",
+                        isVisible: true,
+                        labelConfig: { // data type should be number for translateX, translateY
+                            isVisible: true,
+                            fontSize: 12,
+                            labelColor: '#2e7d32',
+                            textAnchor: 'middle',
+                            translateX: 0, // left (-ve value) | right (+ve value)
+                            translateY: -10, // up (-ve value) | down (+ve value)
+                            format: function (d) {
+                                return d3.format('.2s')(d);
+                            }
+                        }
+                    },
+                    {
+                        key: 'abort_count',
+                        value: 'Abort Count',
+                        color: "#ffb300",
+                        circleColor: "#ffb300",
+                        circleRadius: 5,
+                        lineType: "curveLinear",
+                        isVisible: true,
+                        labelConfig: { // data type should be number for translateX, translateY
+                            isVisible: true,
+                            fontSize: 12,
+                            labelColor: '#ffb300',
+                            textAnchor: 'middle',
+                            translateX: 0, // left (-ve value) | right (+ve value)
+                            translateY: -10, // up (-ve value) | down (+ve value)
+                            format: function (d) {
+                                return d3.format('.2s')(d);
+                            }
+                        }
+                    }
+                ]
+            }
+        };
+        var x = 'Month';
+        var stack = 'company';
+        var lineBarData = [
+            {
+                "customer_count": 50,
+                "Month": 201911,
+                "checkout_count": 90,
+                "abort_count": 20,
+                "company": "Amazon"
+            },
+            {
+                "customer_count": 65,
+                "Month": 201911,
+                "checkout_count": 90,
+                "abort_count": 10,
+                "company": "Flipkart"
+            },
+            {
+                "customer_count": 40,
+                "Month": 201912,
+                "checkout_count": 10,
+                "abort_count": 30,
+                "company": "Amazon"
+            },
+            {
+                "customer_count": 35,
+                "Month": 201912,
+                "checkout_count": 10,
+                "abort_count": 30,
+                "company": "Flipkart"
+            },
+            {
+                "customer_count": 10,
+                "Month": 202001,
+                "checkout_count": 30,
+                "abort_count": 50,
+                "company": "Amazon"
+            },
+            {
+                "customer_count": 15,
+                "Month": 202001,
+                "checkout_count": 30,
+                "abort_count": 50,
+                "company": "Flipkart"
+            },
+            {
+                "customer_count": 25,
+                "Month": 202002,
+                "checkout_count": 120,
+                "abort_count": 20,
+                "company": "Amazon"
+            },
+            {
+                "customer_count": 20,
+                "Month": 202002,
+                "checkout_count": 120,
+                "abort_count": 20,
+                "company": "Flipkart"
+            },
+            {
+                "customer_count": 25,
+                "Month": 202003,
+                "checkout_count": 60,
+                "abort_count": 90,
+                "company": "Amazon"
+            },
+            {
+                "customer_count": 15,
+                "Month": 202003,
+                "checkout_count": 160,
+                "abort_count": 60,
+                "company": "Flipkart"
+            },
+            {
+                "customer_count": 33,
+                "Month": 202004,
+                "checkout_count": 30,
+                "abort_count": 14,
+                "company": "Amazon"
+            },
+            {
+                "customer_count": 15,
+                "Month": 202004,
+                "checkout_count": 30,
+                "abort_count": 14,
+                "company": "Flipkart"
+            },
+            {
+                "customer_count": 39,
+                "Month": 202005,
+                "checkout_count": 50,
+                "abort_count": 100,
+                "company": "Amazon"
+            },
+            {
+                "customer_count": 29,
+                "Month": 202005,
+                "abort_count": 30,
+                "company": "Flipkart"
+            },
+            {
+                "customer_count": 42,
+                "Month": 202006,
+                "checkout_count": 110,
+                "abort_count": 40,
+                "company": "Amazon"
+            },
+            {
+                "customer_count": 45,
+                "Month": 202006,
+                "checkout_count": 110,
+                "abort_count": 40,
+                "company": "Flipkart"
+            }
+        ];
+        // create line chart object
+        var linechart = new vizualy.LineBarChart();
+
+        // create line chart
+        linechart
+            .container("chartContainer")
+            .x(x)
+            .y(y)
+            .stack('company')	// Setting z axis in data
+            .data(lineBarData)
+            .settings({
+                dimension: {
+                    margin: { top: 30, right: 70, bottom: 50, left: 90 }
+                },
+                rotateXAxisTick: {
+                    isVisible: false,
+                    value: [-10, 10, 10] // [relative X position of ticks label, relative y position, rotation-angle]
+                },
+                yAxisTicksCount: { value: 4, isApplied: true },
+                xWordWrap: {
+                    isVisible: true,
+                    linesToAddEllipses: 3
+                },
+                brush: {
+                    isVisible: true,
+                    limit: 100,
+                    offset: 0,
+                    height: 80,
+                    margin: 60
+                }
+            })
+            .on('beforeDraw', () => {
+                console.log("Chart drawing started");
+            })
+            .on('completeDraw', () => {
+                console.log("Chart drawing completed");
+            })
+            .on('beforeUpdate', () => {
+                console.log("Chart update Started");
+            })
+            .on('completeUpdate', () => {
+                console.log("Chart udpate completed");
+            })
+            .draw();
+
+
+        // no data scenario
+        // setTimeout(() => {
+        //     linechart.data([]).update();
+        // }, 3000);
+
+
+        // update chart with new data
+        // setTimeout(() => {
+        //     linechart.data(lineBarData).update();
+        // }, 6000);
+
+        // document.getElementById("chartContainer1").innerHTML = "Hello!! I am another script running after chart plotting";
+
+        /* linechart.getElement("line").on('mouseMove', [(d, element, event) => {
+            console.log('hovered!!!');
+        }]); */
+    </script>
+</body>
+
+</html>

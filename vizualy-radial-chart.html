@@ -1,0 +1,110 @@
+<!doctype html style="height:100%;">
+
+<head>
+    <meta charset="utf-8">
+    <title>UXP Radial chart</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="./vizualy-assistant/src/css/common.css">
+</head>
+
+<body>
+    <div id="chartContainer" style="width: 90%; height: 100%"></div>
+
+    <script type="text/javascript" src="./libs/d3.v6.min.js"></script>
+    <script type="text/javascript" src="./vizualy-assistant/src/js/utility.js"></script>
+    <script type="text/javascript" src="./vizualy-assistant/src/js/assistant.js"></script>
+    <script type="text/javascript" src="./vizualy-assistant/src/js/observer.js"></script>
+    <script type="text/javascript" src="./vizualy-radial-chart/vizualy-radial-chart.js"></script>
+    <script type="text/javascript" src="./vizualy/vizualy.js"></script>
+
+    <script>
+// explore radial target value
+// target value - label
+// total - multiple
+        var data = [
+            {
+                "name": "Jan",
+                "value": 40
+            },
+            // {
+            //     "name": "Feb",
+            //     "value": 20
+            // },
+            // {
+            //     "name": "Mar",
+            //     "value": 25
+            // },
+            // {
+            //     "name": "Apr",
+            //     "value": 10
+            // },
+            // {
+            //     "name": "May",
+            //     "value": 30
+            // },
+            
+        ]
+
+        var radialBarChart = new vizualy.RadialChart();
+
+        // create bar chart
+        radialBarChart
+            .container("chartContainer")
+            .label("name")
+            .value("value")
+            .data(data)
+            .settings({
+                dimension: {
+                    margin: { top: 30, right: 30, bottom: 50, left: 90 }
+                },
+                targetValue : 100,
+                arcMinRadius: 100,
+                label: {
+                    isVisible: true,
+                    xTranslateLabel: 0,
+                    yTranslateLabel: -20,
+                    xTranslateValueLabel: 0,
+                    yTranslateValueLabel: 10,
+                    dataKey: null,
+                    isTargetValueVisible: false,
+                    textLabelFormat: (d) => d,
+                    textValueFormat: (d) => d,
+                },
+                // arcAngle: {
+                //     baseRadial: { // entire circle is 2 and start with 0 and moving clockwise
+                //         startAngle: -0.5,
+                //         endAngle: 0.5
+                //     }
+                // }
+            })
+            .on('beforeDraw', () => {
+                console.log("Chart drawing started");
+            })
+            .on('completeDraw', () => {
+                console.log("Chart drawing completed");
+            })
+            .on('beforeUpdate', () => {
+                console.log("Chart update Started");
+            })
+            .on('completeUpdate', () => {
+                console.log("Chart udpate completed");
+            })
+            .on('error', () => {
+                console.log("Error occurred");
+            })
+            .draw();
+        // no data scenario
+        // var updatedData = [
+        //      {
+        //         "name": "Feb",
+        //         "value": 60
+        //     }    
+        // ]
+        // setTimeout(() => {
+        //     radialBarChart.data(updatedData).update();
+        // }, 3000);
+    </script>
+</body>
+
+</html>

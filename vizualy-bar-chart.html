@@ -1,0 +1,96 @@
+<!doctype html style="height:100%;">
+
+<head>
+    <meta charset="utf-8">
+    <title>UXP Bar chart</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="./vizualy-assistant/src/css/common.css">
+</head>
+
+<body>
+    <div id="chartContainer" style="height:70%;width:90%;display:inline-block;"></div>
+    <script type="text/javascript" src="./libs/d3.v6.min.js"></script>
+    <script type="text/javascript" src="./vizualy-assistant/src/js/utility.js"></script>
+    <script type="text/javascript" src="./vizualy-assistant/src/js/assistant.js"></script>
+    <script type="text/javascript" src="./vizualy-assistant/src/js/observer.js"></script>
+    <script type="text/javascript" src="./vizualy-bar-chart/vizualy-bar-chart.js"></script>
+    <script type="text/javascript" src="./vizualy/vizualy.js"></script>
+
+    <script>
+
+        var barData = {
+            x : 'Client',
+            y : 'Count',
+            data : [{
+                Client: "amazon",
+                Count: 49199
+            }, {
+                Client: "flipkart",
+                Count: 90928
+            }, {
+                Client: "snapdeal",
+                Count: 46913
+            }, {
+                Client: "myntra",
+                Count: 18270
+            }]
+        };
+        
+
+        // create bar chart object   
+        var barchart = new vizualy.BarChart();
+
+        // create bar chart
+        barchart
+            .container("chartContainer")
+            .x('Client')
+            .y('Count')
+            .data(barData.data)
+            .settings( {
+                dimension: {
+                    margin: { top: 30, right: 30, bottom: 50, left: 90 },
+                    // width: 280,
+                },
+                // rotateXAxisTick : ([0, 10, 40]),
+                // xScaleType: {
+                //         type: "band"
+                //     },
+                // yScaleType: {
+                //     // type: "pow", exponent: 2
+                //     type: "log" , base : 2
+                // },
+                // yAxisTicksCount : {value: 6, isApplied: true },
+                // xWordWrap: {
+                //     isVisible: true,
+                //     linesToAddEllipses: 3
+                // },
+                //barSpace : {type: 'px', value: 3 },
+                // brush: {
+                //     isVisible: true,
+                //     limit: 100,
+                //     height: 50,
+                //     margin: 60,
+                //     offset: 0
+                // },
+                })
+            .on('beforeDraw', () => {
+                console.log("Chart drawing started");
+            })
+            .on('completeDraw', () => {
+                console.log("Chart drawing completed");
+            })
+            .on('beforeUpdate', () => {
+                console.log("Chart update Started");
+            })
+            .on('completeUpdate', () => {
+                console.log("Chart udpate completed");
+            })
+            .on('error', () => {
+                console.log("Error occurred");
+            })
+            .draw();
+    </script>
+</body>
+
+</html>

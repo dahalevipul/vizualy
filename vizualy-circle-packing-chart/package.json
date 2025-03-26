@@ -1,0 +1,26 @@
+{
+  "name": "@impetusuxp/vizualy-circle-packing-chart",
+  "version": "1.0.1",
+  "description": "Circle packing chart in library vizualy by Impetus Technologies",
+  "main": "./vizualy-circle-packing-chart.js",
+  "files": [
+    "./vizualy-circle-packing-chart.js",
+    "./vizualy-circle-packing-chart.d.ts"
+  ],
+  "keywords": [
+    "Impetus",
+    "Visualization",
+    "Chart",
+    "Graph",
+    "Assistant",
+    "Utility",
+    "Vizualy",
+    "Circle packing chart"
+  ],
+  "author": "UX Practice Impetus",
+  "license": "MIT",
+  "dependencies": {
+    "@impetusuxp/vizualy-assistant": "^1.0.0",
+    "d3": "^6.5.0"
+  }
+}

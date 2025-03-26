@@ -1,0 +1,1 @@
+declare module '@impetusuxp/vizualy-vertical-grouped-bar-chart';

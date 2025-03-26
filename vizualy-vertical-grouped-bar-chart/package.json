@@ -1,0 +1,26 @@
+{
+  "name": "@impetusuxp/vizualy-vertical-grouped-bar-chart",
+  "version": "1.0.1",
+  "description": "Vertical Grouped Bar chart in library Vizualy by Impetus Technologies",
+  "main": "./vizualy-vertical-grouped-bar-chart.js",
+  "files": [
+    "./vizualy-vertical-grouped-bar-chart.js",
+    "./vizualy-vertical-grouped-bar-chart.d.ts"
+  ],
+  "keywords": [
+    "Impetus",
+    "Visualization",
+    "Chart",
+    "Graph",
+    "Assistant",
+    "Utility",
+    "Vizualy",
+    "Vertical Grouped Bar chart"
+  ],
+  "author": "UX Practice Impetus",
+  "license": "MIT",
+  "dependencies": {
+    "@impetusuxp/vizualy-assistant": "^1.0.0",
+    "d3": "^6.5.0"
+  }
+}

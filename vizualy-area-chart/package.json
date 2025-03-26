@@ -1,0 +1,26 @@
+{
+  "name": "@impetusuxp/vizualy-area-chart",
+  "version": "1.0.1",
+  "description": "Area chart in library vizualy by Impetus Technologies",
+  "main": "./vizualy-area-chart.js",
+  "files": [
+    "./vizualy-area-chart.js",
+    "./vizualy-area-chart.d.ts"
+  ],
+  "keywords": [
+    "Impetus",
+    "Visualization",
+    "Chart",
+    "Graph",
+    "Assistant",
+    "Utility",
+    "Vizualy",
+    "Area chart"
+  ],
+  "author": "UX Practice Impetus",
+  "license": "MIT",
+  "dependencies": {
+    "@impetusuxp/vizualy-assistant": "^1.0.0",
+    "d3": "^6.5.0"
+  }
+}

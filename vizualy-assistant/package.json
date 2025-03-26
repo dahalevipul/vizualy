@@ -1,0 +1,23 @@
+{
+  "name": "@impetusuxp/vizualy-assistant",
+  "version": "1.0.0",
+  "description": "Vizualy charting library assistant methods",
+  "files": [
+    "./src/js/utility.js",
+    "./src/js/assistant.js",
+    "./src/js/observer.js",
+    "./src/css/common.css"
+  ],
+  "keywords": [
+    "Visualization",
+    "Chart",
+    "Graph",
+    "Assistant",
+    "Vizualy"
+  ],
+  "author": "UX Practice Impetus",
+  "license": "MIT",
+  "dependencies": {
+    "d3": "^6.5.0"
+  }
+}

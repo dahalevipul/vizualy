@@ -1,0 +1,172 @@
+<!doctype html style="height:100%;">
+
+<head>
+    <meta charset="utf-8">
+    <title>UXP Bubble chart</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="./vizualy-assistant/src/css/common.css">
+</head>
+
+<body>
+    <div id="chartContainer" style="height:70%;width:90%;display:inline-block;"></div>
+    <script type="text/javascript" src="./libs/d3.v6.min.js"></script>
+    <script type="text/javascript" src="./vizualy-assistant/src/js/utility.js"></script>
+    <script type="text/javascript" src="./vizualy-assistant/src/js/assistant.js"></script>
+    <script type="text/javascript" src="./vizualy-assistant/src/js/observer.js"></script>
+    <script type="text/javascript" src="./vizualy-bubble-chart/vizualy-bubble-chart.js"></script>
+    <script type="text/javascript" src="./vizualy/vizualy.js"></script>
+
+    <script>
+
+        var bubbleData =
+        {
+            x: 'PerCapita',
+            y: 'Value',
+            r: 'lifeExp',
+            labelName: 'labelName',
+            data: [{
+                labelName: "China",
+                PerCapita: 10,
+                Value: 33.828,
+                lifeExp: 20
+
+            }, {
+                labelName: "Canada",
+                PerCapita: 40,
+                Value: 56.34,
+                lifeExp: 28
+
+            }, {
+                labelName: "India",
+                PerCapita: 60,
+                Value: 72.423,
+                lifeExp: 25
+
+            }, {
+                labelName: "Belgium",
+                PerCapita: 50,
+                Value: 67.78,
+                lifeExp: 28,
+
+            }, {
+                labelName: "Brazil",
+                PerCapita: 20,
+                Value: 64.23,
+                lifeExp: 26,
+
+            }, {
+                labelName: "Argentina",
+                PerCapita: 90,
+                Value: 40,
+                lifeExp: 24,
+            }, {
+                labelName: "France",
+                PerCapita: 44,
+                Value: 30,
+                lifeExp: 30,
+            }]
+        };
+
+
+        // create bubble chart object   
+        var bubblechart = new vizualy.BubbleChart();
+
+        // create bubble chart
+        bubblechart
+            .container("chartContainer")
+            .x(bubbleData.x)
+            .y(bubbleData.y)
+            .r(bubbleData.r)
+            .labelName(bubbleData.labelName)
+            .data(bubbleData.data)
+            .settings({
+                dimension: {
+                    margin: { top: 30, right: 0, bottom: 50, left: 90 },
+                },
+                tooltip: {
+                    isVisible: true
+                },
+                brush: {
+                    isVisible: false,
+                    limit: 30,
+                    offset: 0,
+                    height: 80,
+                    margin: 80
+                },
+                bubbleLabel: {
+                    isVisible: true,
+                    labelFormat: (d) => d
+                }
+            })
+            .on('beforeDraw', () => {
+                console.log("Chart drawing started");
+            })
+            .on('completeDraw', () => {
+                console.log("Chart drawing completed");
+            })
+            .on('beforeUpdate', () => {
+                console.log("Chart update Started");
+            })
+            .on('completeUpdate', () => {
+                console.log("Chart udpate completed");
+            })
+            .on('error', () => {
+                console.log("Error occurred");
+            })
+            .draw();
+
+        updatedData = [
+            {
+                labelName: "China",
+                PerCapita: 10,
+                Value: 43.828,
+                lifeExp: 20
+
+            }, {
+                labelName: "Canada",
+                PerCapita: 40,
+                Value: 56.34,
+                lifeExp: 28
+
+            }, {
+                labelName: "India",
+                PerCapita: 25,
+                Value: 72.423,
+                lifeExp: 25
+
+            }, {
+                labelName: "Belgium",
+                PerCapita: 50,
+                Value: 47.78,
+                lifeExp: 28,
+
+            }, {
+                labelName: "Brazil",
+                PerCapita: 20,
+                Value: 64.23,
+                lifeExp: 26,
+
+            }, {
+                labelName: "Argentina",
+                PerCapita: 100,
+                Value: 40,
+                lifeExp: 24,
+            }, {
+                labelName: "France",
+                PerCapita: 40,
+                Value: 30,
+                lifeExp: 30,
+            }
+        ]
+
+        // update chart with new data
+        setTimeout(() => {
+            bubblechart.x(bubbleData.x)
+                .y(bubbleData.y)
+                .data(updatedData).update();
+        }, 3000);
+    </script>
+</body>
+
+</html>

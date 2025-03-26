@@ -1,0 +1,38 @@
+{
+    "name": "@impetusuxp/vizualy",
+    "version": "1.0.2",
+    "description": "Chart library by UXP Impetus Technologies",
+    "author": "UX Practice Impetus",
+    "license": "MIT",
+    "main": "./vizualy.js",
+    "types": "./vizualy.d.ts",
+    "files": [
+        "./vizualy.js",
+        "./vizualy.d.ts"
+    ],
+    "keywords": [
+        "Impetus",
+        "Visualization",
+        "Chart",
+        "Graph",
+        "Utility",
+        "Vizualy"
+    ],
+    "dependencies": {
+        "@impetusuxp/vizualy-area-chart": "^1.0.1",
+        "@impetusuxp/vizualy-bar-chart": "^1.0.1",
+        "@impetusuxp/vizualy-bubble-chart": "^1.0.1",
+        "@impetusuxp/vizualy-circle-packing-chart": "^1.0.1",
+        "@impetusuxp/vizualy-horizontal-bullet-chart": "^1.0.1",
+        "@impetusuxp/vizualy-horizontal-grouped-bar-chart": "^1.0.1",
+        "@impetusuxp/vizualy-horizontal-stacked-bar-chart": "^1.0.1",
+        "@impetusuxp/vizualy-line-bar-chart": "^1.0.1",
+        "@impetusuxp/vizualy-line-chart": "^1.0.1",
+        "@impetusuxp/vizualy-network-chart": "^1.0.1",
+        "@impetusuxp/vizualy-pie-chart": "^1.0.1",
+        "@impetusuxp/vizualy-radial-chart": "^1.0.1",
+        "@impetusuxp/vizualy-sunburst-chart": "^1.0.1",
+        "@impetusuxp/vizualy-vertical-grouped-bar-chart": "^1.0.1",
+        "@impetusuxp/vizualy-vertical-stacked-bar-chart": "^1.0.1"
+    }
+}

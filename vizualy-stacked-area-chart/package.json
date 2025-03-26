@@ -1,0 +1,26 @@
+{
+  "name": "@impetusuxp/vizualy-stacked-area-chart",
+  "version": "1.0.0",
+  "description": "Stacked Area chart in library vizualy by Impetus",
+  "main": "./vizualy-stacked-area-chart.js",
+  "files": [
+    "./vizualy-stacked-area-chart.js",
+    "./vizualy-stacked-area-chart.d.ts"
+  ],
+  "keywords": [
+    "Impetus",
+    "Visualization",
+    "Chart",
+    "Graph",
+    "Assistant",
+    "Utility",
+    "Vizualy",
+    "Stacked Area chart"
+  ],
+  "author": "UX Practice Impetus",
+  "license": "MIT",
+  "dependencies": {
+    "@impetusuxp/vizualy-assistant": "^1.0.0",
+    "d3": "^6.5.0"
+  }
+}

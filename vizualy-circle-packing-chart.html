@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en-IN">
+	<head>
+		<meta charset="utf-8">
+		<title>UXP Circle packing chart</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="./vizualy-assistant/src/css/common.css"/>
+		<style>
+			html, body {
+				width: 100%;
+				height: 100%;
+				margin: 0px;
+			}
+
+			#chartContainer {
+				height: 50%;
+				width: 50%;
+				padding: 10px;
+			}
+
+			.node {
+				cursor: pointer;
+			}
+		
+			.node:hover {
+				stroke: #000;
+				stroke-width: 1.5px;
+			}
+
+			.label {
+				font: 11px "Helvetica Neue", Helvetica, Arial, sans-serif;
+				text-anchor: middle;
+				text-shadow: 0 1px 0 #fff, 1px 0 0 #fff, -1px 0 0 #fff, 0 -1px 0 #fff;
+			}
+
+			.label {
+				pointer-events: none;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="chartContainer"></div>
+		<script type="text/javascript" src="./libs/d3.v6.min.js"></script>
+		<script type="text/javascript" src="./vizualy-assistant/src/js/utility.js"></script>
+		<script type="text/javascript" src="./vizualy-assistant/src/js/assistant.js"></script>
+		<script type="text/javascript" src="./vizualy-assistant/src/js/observer.js"></script>
+		<script type="text/javascript" src="./vizualy-circle-packing-chart/vizualy-circle-packing-chart.js"></script>
+		<script type="text/javascript" src="./vizualy/vizualy.js"></script>
+
+		<script>
+			var data = {
+				"name": "Slavic Languages",
+				"children": [
+					{
+						"name": "East Slavic",
+						// "color": "yellow",
+						"children": [
+							{
+								"name": "Russian",
+								size: 150000000,
+								// "color": "red"
+							},
+							{
+								"name": "Ukrainian",
+								size: 45000000,
+								// "color": "red"
+							},
+							{
+								"name": "Belarusian",
+								size: 3200000,
+								// "color": "red"
+							}
+						]
+					},
+					{
+						"name": "West Slavic",
+						"children": [
+							{
+								"name": "Polish",
+								size: 55000000,
+								// "color": "green"
+							},
+							{
+								"name": "Czech",
+								size: 10600000,
+								// "color": "green"
+							},
+							{
+								"name": "Slovak",
+								size: 5200000,
+								// "color": "green"
+							}
+						]
+					},
+					{
+						"name": "South Slavic",
+						"children": [
+							{
+								"name": "Serbo-Croatian",
+								size: 21000000,
+								// "color": "blue"
+							},
+							{
+								"name": "Bulgarian",
+								size: 9000000,
+								// "color": "blue"
+							},
+							{
+								"name": "Slovene",
+								size: 2500000,
+								// "color": "blue"
+							},
+							{
+								"name": "Macedonian",
+								size: 1400000,
+								// "color": "blue"
+							}
+						]
+					}
+				]
+			};
+
+			var circlePackingChart = new vizualy.CirclePackingChart();
+			circlePackingChart
+				.container("chartContainer")
+				.label("name")
+				.size("size")
+				.children("children")
+				.colors({
+					range: ["hsl(152,80%,80%)", "hsl(228,30%,40%)"],
+					ground: "#FFFFFF",
+					leafColor: "#FFFFFF",
+					nodeColorKey: "color"
+				})
+				.data(data)
+				.settings({
+					dimension: {
+						margin: {
+							top: 30,
+							right: 30,
+							bottom: 50,
+							left: 90
+						}
+					},
+					label: {
+						isVisible: true
+					},
+					tooltip: {
+						isVisible: true,
+						// content: (d, chartObject) => "Some html",
+						placement: "top-right"
+					},
+				})
+				.on('beforeDraw', () => {
+					console.log("Chart drawing started");
+				})
+				.on('completeDraw', () => {
+					console.log("Chart drawing completed");
+				})
+				.on('beforeUpdate', () => {
+					console.log("Chart update Started");
+				})
+				.on('completeUpdate', () => {
+					console.log("Chart udpate completed");
+				})
+				.on('error', () => {
+					console.log("Error occurred");
+				})
+				.draw();
+
+			// // no data scenario
+			// var updatedData = {
+			// 	"name": "occupation",
+			// 	"children": [
+			// 		{
+			// 			"name": "Management, professional, and related occupations",
+			// 			"children": [
+			// 				{
+			// 					"name": "Management, business, and financial operations occupations",
+			// 					"children": [
+			// 						{
+			// 							"name": "Business and financial operations occupations",
+			// 							"children": [
+			// 								{
+			// 									"name": "Agents and business managers of artists, performers, and athletes",
+			// 									"ID": "1.1.2.1",
+			// 									"size": 52
+			// 								},
+			// 								{
+			// 									"name": "Buyers and purchasing agents, farm products",
+			// 									"ID": "1.1.2.2",
+			// 									"size": 15
+			// 								},
+			// 								{
+			// 									"name": "Wholesale and retail buyers, except farm products",
+			// 									"ID": "1.1.2.3",
+			// 									"size": 216
+			// 								}
+			// 							]
+			// 						}
+			// 					]
+			// 				}
+			// 			]
+			// 		},
+			// 		{
+			// 			"name": "Management, professional, and related occupations",
+			// 			"size": 200
+			// 		}
+			// 	]
+			// }
+			// setTimeout(() => {
+			//     circlePackingChart.data(updatedData).update();
+			// }, 3000);
+		</script>
+	</body>
+</html>

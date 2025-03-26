@@ -1,0 +1,27 @@
+{
+    "name": "@impetusuxp/vizualy-bubble-chart",
+    "version": "1.0.1",
+    "description": "Bubble chart in library vizualy by Impetus Technologies",
+    "main": "./vizualy-bubble-chart.js",
+    "files": [
+      "./vizualy-bubble-chart.js",
+      "./vizualy-bubble-chart.d.ts"
+    ],
+    "keywords": [
+      "Impetus",
+      "Visualization",
+      "Chart",
+      "Graph",
+      "Assistant",
+      "Utility",
+      "Vizualy",
+      "Bubble chart"
+    ],
+    "author": "UX Practice Impetus",
+    "license": "MIT",
+    "dependencies": {
+      "@impetusuxp/vizualy-assistant": "^1.0.0",
+      "d3": "^6.5.0"
+    }
+  }
+  

@@ -1,0 +1,26 @@
+{
+  "name": "@impetusuxp/vizualy-vertical-stacked-bar-chart",
+  "version": "1.0.1",
+  "description": "Vertical Stacked Bar chart in library vizualy by Impetus Technologies",
+  "main": "./vizualy-vertical-stacked-bar-chart.js",
+  "files": [
+    "./vizualy-vertical-stacked-bar-chart.js",
+    "./vizualy-vertical-stacked-bar-chart.d.ts"
+  ],
+  "keywords": [
+    "Impetus",
+    "Visualization",
+    "Chart",
+    "Graph",
+    "Assistant",
+    "Utility",
+    "Vizualy",
+    "Vertical Stacked Bar chart"
+  ],
+  "author": "UX Practice Impetus",
+  "license": "MIT",
+  "dependencies": {
+    "@impetusuxp/vizualy-assistant": "^1.0.0",
+    "d3": "^6.5.0"
+  }
+}

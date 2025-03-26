@@ -1,0 +1,26 @@
+{
+  "name": "@impetusuxp/vizualy-bar-chart",
+  "version": "1.0.1",
+  "description": "Bar chart in library vizualy by Impetus Technologies",
+  "main": "./vizualy-bar-chart.js",
+  "files": [
+    "./vizualy-bar-chart.js",
+    "./vizualy-bar-chart.d.ts"
+  ],
+  "keywords": [
+    "Impetus",
+    "Visualization",
+    "Chart",
+    "Graph",
+    "Assistant",
+    "Utility",
+    "Vizualy",
+    "Bar chart"
+  ],
+  "author": "UX Practice Impetus",
+  "license": "MIT",
+  "dependencies": {
+    "@impetusuxp/vizualy-assistant": "^1.0.0",
+    "d3": "^6.5.0"
+  }
+}

@@ -1,0 +1,220 @@
+<!doctype html style="height:100%;">
+
+<head>
+    <meta charset="utf-8">
+    <title>UXP Sunburst chart</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="./vizualy-assistant/src/css/common.css">
+</head>
+
+<body>
+    <div id="chartContainer" style="width:100%;height:100%;display:inline-block;"></div>
+    <div id="chartContainer1" style="width: 90%; height: 50%; margin-top: 20px; text-align: center;"></div>
+
+    <script type="text/javascript" src="./libs/d3.v6.min.js"></script>
+    <script type="text/javascript" src="./vizualy-assistant/src/js/utility.js"></script>
+    <script type="text/javascript" src="./vizualy-assistant/src/js/assistant.js"></script>
+    <script type="text/javascript" src="./vizualy-assistant/src/js/observer.js"></script>
+    <script type="text/javascript" src="./vizualy-sunburst-chart/vizualy-sunburst-chart.js"></script>
+    <script type="text/javascript" src="./vizualy/vizualy.js"></script>
+
+    <script>
+
+        var data = {
+            "name": "TOPICS",
+            "children": [{
+                "name": "Topic A",
+                "title": "A",
+                //"color" : "#d92626",
+                "children": [{
+                    "name": "Topic 1", "title": "A1",
+                    "children": [{ "name": "Sub A1", "title": "sub a1", "size": 3 }, { "name": "Sub A2", "title": "sub a2", "size": 4 }]
+                }, {
+                    "name": "Topic 2",
+                    "children": [{ "name": "Sub 2", "title": "sub a2", "size": 3 }]
+                }
+                    , {
+                    "name": "Topic 3",
+                    "children": [{ "name": "Sub 2", "title": "sub a2", "size": 3 }]
+                }]
+            },
+
+            {
+                "name": "Topic B",
+                "title": "B",
+                //"color" : "#006580",
+                "children": [{ "name": "Sub B1", "title": "B", "size": 3 }, { "name": "Sub B2", "title": "B", "size": 3 }, { "name": "Sub B3", "title": "B", "size": 3 }]
+            },
+
+            {
+                "name": "Topic C",
+                "title": "C",
+                //"color" : "#A3DD72",
+                "children": [{ "name": "Sub A1", "title": "C", "size": 4 }, { "name": "Sub A2", "title": "C", "size": 4 }]
+            },
+            {
+                "name": "Topic D",
+                "title": "D",
+                //"color" : "#A3DD00",
+                "children": [{ "name": "Sub A1", "title": "D", "size": 4 }, { "name": "Sub A2", "title": "D", "size": 4 }]
+            }]
+        };
+
+
+        var newData = {
+            "name": "TOPICS",
+            "children": [{
+                "name": "Topic A",
+                "title": "A",
+                //"color" : "#d92626",
+                "children": [{
+                    "name": "Topic 1", "title": "A1",
+                    "children": [{ "name": "Sub A1", "title": "sub a1", "size": 30 }, { "name": "Sub A2", "title": "sub a2", "size": 4 }]
+                }, {
+                    "name": "Topic 2",
+                    "children": [{ "name": "Sub 2", "title": "sub a2", "size": 1 }]
+                }
+                    , {
+                    "name": "Topic 3",
+                    "children": [{ "name": "Sub 2", "title": "sub a2", "size": 2 }]
+                }]
+            },
+
+            {
+                "name": "Topic B",
+                "title": "B",
+                //"color" : "#006580",
+                "children": [{ "name": "Sub B1", "title": "B", "size": 14 }, { "name": "Sub B2", "title": "B", "size": 3 }, { "name": "Sub B3", "title": "B", "size": 3 }]
+            },
+
+            {
+                "name": "Topic C",
+                "title": "C",
+                //"color" : "#A3DD72",
+                "children": [{ "name": "Sub A1", "title": "C", "size": 15 }, { "name": "Sub A2", "title": "C", "size": 4 }]
+            },
+            {
+                "name": "Topic D",
+                "title": "D",
+                //"color" : "#A3DD00",
+                "children": [{ "name": "Sub A1", "title": "D", "size": 4 }, { "name": "Sub A2", "title": "D", "size": 4 }]
+            }]
+        };
+
+        // create sunburst chart object
+        var sunburstchart = new vizualy.SunburstChart();
+
+
+
+        var settings = {
+            dimension: {
+                margin: { top: 50, right: 0, bottom: 0, left: 0 }
+            },
+            // labelKey : 'name',
+            label: {
+                dataKey: 'name',
+            },
+            legend: {
+                isVisible: true
+            }
+        };
+        // create sunburstchart chart
+        sunburstchart
+            .container("chartContainer")
+            .x("name")
+            .y("size")
+            .data(data)
+            .settings(settings)
+            .on('beforeDraw', () => {
+                console.log("Chart drawing started");
+            })
+            .on('completeDraw', () => {
+                console.log("Chart drawing completed");
+            })
+            .on('beforeUpdate', () => {
+                console.log("Chart update Started");
+            })
+            .on('completeUpdate', () => {
+                console.log("Chart udpate completed");
+            })
+            .on('error', () => {
+                console.log("Error occurred");
+            })
+            .draw();
+
+
+        // no data scenario
+        // setTimeout(() => {
+        //     sunburstchart.data([]).update();
+        // }, 3000);
+
+
+        //update chart with new data
+        setTimeout(() => {
+            sunburstchart.data(newData).update();
+        }, 1000);
+
+        setTimeout(() => {
+            sunburstchart.data(data).update();
+        }, 2000);
+
+        setTimeout(() => {
+            sunburstchart.data(newData).update();
+        }, 3000);
+
+        setTimeout(() => {
+            sunburstchart.data(data).update();
+        }, 4000);
+
+        // update chart with new settings
+        /* setTimeout(() => {
+             barchart.settings( {
+                 xAxisLabel: {
+                     value: 'X-axis-updated-label',
+                     margin: 40,
+                     isVisible: true
+                 },
+                 yAxisLabel: {
+                     value: 'Y-axis-updated-label',
+                     margin: 50,
+                     isVisible: true
+                 },
+                 barLabel: {
+                     isVisible: true,
+                     labelFormat: (d) => d + "%"
+                 },
+                 tooltip: {
+                     content: (d, chartObject) => {
+                         return "Custom content from out side";
+                     },
+                     placement: "bottom-left"
+                 },
+                 isResponsive: false
+             })
+             .data([{
+                 Client: "amazon",
+                 Count: 491189
+             }, {
+                 Client: "flipkart",
+                 Count: 809285,
+                 color: 'green'
+             }, {
+                 Client: "snapdeal",
+                 Count: 469133,
+                 color: 'gray'
+             }, {
+                 Client: "myntra",
+                 Count: 182708
+             }]).update();
+         }, 10000);*/
+
+        document.getElementById("chartContainer1").innerHTML = "Hello!! I am another script running after chart plotting";
+
+        /* barchart.getElement("bar").on('mouseMove', [(d, element, event) => {
+            console.log('hovered!!!');
+        }]); */
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,120 @@
+.height-100 {
+  height: 100%;
+}
+
+.uxp-tooltip {
+  position: absolute;
+  z-index: 99999;
+  display: none;
+  min-width: 80px;
+  height: auto;
+  background: none repeat scroll 0 0 #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  box-shadow: 1px -1px 5px #888;
+  text-align: left;
+  color: #000;
+  opacity: .85;
+}
+
+.uxp-vizualy .uxp-x-axis path,
+.uxp-vizualy .uxp-y-axis path,
+.uxp-vizualy .uxp-y1-axis path {
+  stroke: #888888;
+}
+
+.uxp-vizualy .uxp-x-axis .tick text,
+.uxp-vizualy .uxp-y-axis .tick text,
+.uxp-vizualy .uxp-y1-axis .tick text {
+  font-family: "Roboto", sans-serif;
+  fill: #888888;
+  font-size: 11px;
+  font-weight: bold;
+}
+
+.uxp-vizualy .uxp-grid line {
+  stroke: #ccc;
+  stroke-opacity: 0.6;
+  shape-rendering: crispEdges;
+  opacity: 0.8;
+  stroke-width: 0.6px;
+}
+
+.uxp-vizualy .uxp-grid path {
+  stroke-width: 0;
+}
+
+.uxp-vizualy .uxp-grid .uxp-zero-grid {
+  stroke-opacity: 1;
+  opacity: 1;
+  stroke-width: 1px;
+}
+
+.uxp-x-axis-label {
+  text-anchor: middle;
+  font-family: "Roboto", sans-serif;
+  fill: #888888;
+  font-size: 11px;
+  font-weight: bold;
+}
+
+.uxp-y-axis-label {
+  text-anchor: middle;
+  font-family: "Roboto", sans-serif;
+  fill: #888888;
+  font-size: 11px;
+  font-weight: bold;
+  transform: rotate(-90deg);
+}
+
+.uxp-y1-axis-label {
+  text-anchor: middle;
+  font-family: "Roboto", sans-serif;
+  fill: #888888;
+  font-size: 11px;
+  font-weight: bold;
+  transform: rotate(-90deg);
+}
+
+.uxp-base-group {
+  display: flex;
+  flex: 1 1 auto;
+}
+
+.pie-chart-factory {
+  height: 100%;
+}
+
+.network-action {
+  position: absolute;
+  top: 50%;
+}
+.zoomBtn {
+  margin-right: 4px;
+  border: 0;
+  padding: 5px;
+  background: #143055;
+  color: #ffffff;
+  font-size: 20px;
+ 
+}
+
+.network_btn-action {
+  cursor: pointer;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+#fullscreenButton {
+  margin-top: 10px;
+}
+
+.selected-network-chart-nodes {
+  stroke: #ff0000;
+}
+.highlight {
+  stroke: #ff0000;
+  stroke-width: 3px;
+}
