@@ -1,14 +1,18 @@
 {
   "name": "@impetusuxp/vizualy-vertical-stacked-bar-chart",
-  "version": "1.0.1",
-  "description": "Vertical Stacked Bar chart in library vizualy by Impetus Technologies",
+  "version": "1.0.2",
+  "description": "Vertical Stacked Bar chart of Vizualy library by Impetus Technologies",
   "main": "./vizualy-vertical-stacked-bar-chart.js",
   "files": [
     "./vizualy-vertical-stacked-bar-chart.js",
     "./vizualy-vertical-stacked-bar-chart.d.ts"
   ],
+  "repository": "https://github.com/dahalevipul/vizualy",
+  "bugs": "https://github.com/dahalevipul/vizualy/issues",
+  "homepage": "https://github.com/dahalevipul/vizualy",
+  "pulls": "https://github.com/dahalevipul/vizualy/pulls",
   "keywords": [
-    "Impetus",
+    "Impetus Technologies",
     "Visualization",
     "Chart",
     "Graph",

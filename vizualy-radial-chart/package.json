@@ -1,14 +1,18 @@
 {
   "name": "@impetusuxp/vizualy-radial-chart",
-  "version": "1.0.1",
-  "description": "Radial chart in library Vizualy by Impetus Technologies",
+  "version": "1.0.2",
+  "description": "Radial chart of Vizualy library by Impetus Technologies",
   "main": "./vizualy-radial-chart.js",
   "files": [
     "./vizualy-radial-chart.js",
     "./vizualy-radial-chart.d.ts"
   ],
+  "repository": "https://github.com/dahalevipul/vizualy",
+  "bugs": "https://github.com/dahalevipul/vizualy/issues",
+  "homepage": "https://github.com/dahalevipul/vizualy",
+  "pulls": "https://github.com/dahalevipul/vizualy/pulls",
   "keywords": [
-    "Impetus",
+    "Impetus Technologies",
     "Visualization",
     "Chart",
     "Graph",
